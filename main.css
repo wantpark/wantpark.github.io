@@ -1,0 +1,16 @@
+.navbar {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+body {
+    overflow-x: clip;
+}
+
+image-thumbnail {
+    object-fit: cover;
+}
+
+.navbar-toggler-icon {
+    background-color: #fd7e20;
+}
