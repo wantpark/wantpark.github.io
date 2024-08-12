@@ -9,9 +9,75 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="main.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    /* 팝업 배경 */
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 9999;
+    }
+    /* 팝업 박스 */
+    .popup-box {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      background-color: white;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      z-index: 10000;
+    }
+    .popup-box h2 {
+      margin-top: 0;
+      font-size: 24px;
+    }
+    .popup-box p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    /* 닫기 버튼 */
+    .close-btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 20px;
+      display: block;
+      width: 100%;
+      font-size: 16px;
+    }
+</style>
 </head>
 
 <body>
+  <div class="popup-overlay" id="popup">
+    <div class="popup-box">
+        <h2>사무실 이전 안내</h2>
+        <p>안녕하세요 (주)키미소프트입니다.</p>
+        <p>당사는 2024년 8월 13일자로 사무실을 이전하게 되었습니다.</p>
+        <ul>
+            <li><strong>새로운 주소:</strong> 서울특별시 금천구 디지털로9길 46, 이앤씨드림타워7차 4층 406-1호</li>
+            <li><strong>이전 주소:</strong> 서울특별시 강남구 영동대로 602, 6층 D97호</li>
+            <li><strong>이전 일시:</strong> 2024년 8월 13일</li>
+        </ul>
+        <button class="close-btn" onclick="closePopup()">닫기</button>
+    </div>
+</div>
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid" style="background-color: #000000">
       <a class="navbar-brand" href="#">
@@ -359,6 +425,16 @@
           document.getElementById("intro_video").style.display = "none";
         }
     }
+  
+  // 팝업 열기
+  window.onload = function() {
+    document.getElementById('popup').style.display = 'block';
+  };
+
+  // 팝업 닫기
+  function closePopup() {
+    document.getElementById('popup').style.display = 'none';
+  }
   </script>
 
 </body>
