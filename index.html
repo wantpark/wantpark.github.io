@@ -1,467 +1,131 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="naver-site-verification" content="e80fff79de2744135414d34c14a9d33efeced023" />
-  <title>(주)키미소프트</title>
+    <meta charset="UTF-8">
+    <title>키미소프트 - 홈페이지 리뉴얼 안내</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Apple SD Gothic Neo", "Noto Sans KR", Arial, sans-serif;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #ffffff;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="main.css">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-    /* 팝업 배경 */
-    .popup-overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 9999;
-    }
-    /* 팝업 박스 */
-    .popup-box {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 600px;
-      background-color: white;
-      padding: 20px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      border-radius: 8px;
-      z-index: 10000;
-    }
-    .popup-box h2 {
-      margin-top: 0;
-      font-size: 24px;
-    }
-    .popup-box p {
-      font-size: 16px;
-      line-height: 1.5;
-    }
-    /* 닫기 버튼 */
-    .close-btn {
-      background-color: #4CAF50;
-      color: white;
-      padding: 10px 20px;
-      text-align: center;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-top: 20px;
-      display: block;
-      width: 100%;
-      font-size: 16px;
-    }
-</style>
+        .notice-box {
+            background: linear-gradient(145deg,
+                    rgba(255, 255, 255, 0.12),
+                    rgba(255, 255, 255, 0.05));
+            backdrop-filter: blur(6px);
+            padding: 70px 60px;
+            border-radius: 22px;
+            max-width: 950px;
+            width: 90%;
+            box-shadow:
+                0 20px 50px rgba(0, 0, 0, 0.45),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+            border-top: 4px solid #4facfe;
+        }
+
+        .notice-box h1 {
+            font-size: 44px;
+            margin-bottom: 35px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            background: linear-gradient(90deg, #4facfe, #00f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .notice-box p {
+            font-size: 24px;
+            line-height: 1.85;
+            margin: 18px 0;
+            font-weight: 500;
+        }
+
+        .highlight {
+            font-size: 27px;
+            font-weight: 800;
+            color: #a5f3fc;
+            /* 민트/시안 계열 */
+        }
+
+        .strong {
+            color: #ffd166;
+            /* 옐로우 포인트 */
+            font-weight: 800;
+        }
+
+        .company {
+            margin-top: 45px;
+            font-size: 22px;
+            font-weight: 700;
+            color: #e0e7ff;
+        }
+
+        .divider {
+            width: 80px;
+            height: 4px;
+            margin: 30px auto;
+            background: linear-gradient(90deg, #4facfe, #00f2fe);
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .notice-box {
+                padding: 40px 25px;
+            }
+
+            .notice-box h1 {
+                font-size: 30px;
+            }
+
+            .notice-box p {
+                font-size: 18px;
+            }
+
+            .highlight {
+                font-size: 20px;
+            }
+
+            .company {
+                font-size: 18px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-  <div class="popup-overlay" id="popup">
-    <div class="popup-box">
-        <h2>사무실 이전 안내</h2>
-        <p>안녕하세요 (주)키미소프트입니다.</p>
-        <p>당사는 2024년 8월 13일자로 사무실을 이전하게 되었습니다.</p>
-        <ul>
-            <li><strong>새로운 주소:</strong> 서울특별시 금천구 디지털로9길 46, 이앤씨드림타워7차 4층 406-1호</li>
-            <li><strong>이전 주소:</strong> 서울특별시 강남구 영동대로 602, 6층 D97호</li>
-            <li><strong>이전 일시:</strong> 2024년 8월 13일</li>
-        </ul>
-        <button class="close-btn" onclick="closePopup()">닫기</button>
-    </div>
-</div>
-  <nav class="navbar navbar-expand-lg">
-    <div class="container-fluid" style="background-color: #000000">
-      <a class="navbar-brand" href="#">
-        <img src="img/logo.jpg" alt="Company Logo" width="150" class="d-inline-block">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon">
-          <i class="fas fa-bars"></i>
-        </span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mx-auto mr-auto">
-          <li class="nav-item mx-5">
-            <a class="nav-link" href="#technology" style="color: #ffffff">Technology</a>
-          </li>
-          <li class="nav-item mx-5">
-            <a class="nav-link" href="#business" style="color: #ffffff">Business</a>
-          </li>
-          <li class="nav-item mx-5">
-            <a class="nav-link" href="#industries" style="color: #ffffff">industries</a>
-          </li>
-          <li class="nav-item mx-5">
-            <a class="nav-link" href="#company" style="color: #ffffff">Company</a>
-          </li>
-          <li class="nav-item mx-5">
-            <a class="nav-link" href="#contact" style="color: #ffffff">Contact</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+    <div class="notice-box">
+        <h1>홈페이지 리뉴얼 안내</h1>
 
-  <section id="intro">
-    <div class="container-fluid" style="background-color: #070a16; padding: 7%">
-      <div class="row align-items-center">
-        <div class="col-md-6 text-white">
-          <h1 style="font-weight: 900; font-size: 2.5em; margin-bottom: 1rem;">
-            Revolutionize Your Mobility Experience
-          </h1>
-          <p style="font-size: 1.1em;">
-            Leverage our AI and IoT solutions for intelligent fleet management, telematics service, enhanced public transportation, and optimized traffic management.
-          </p>
-          <div class="btn-group" role="group" aria-label="Basic example" style="padding-bottom: 10%;">
-            <button type="button" class="btn btn-lg px-4 me-4" style="background-color: #070a16; border-color: #fd7e20; color: #fd7e20; border-radius: 20px"
-              onClick="document.getElementById('contact').scrollIntoView();">CONTACT</button>
-            <button type="button" class="btn btn-lg px-5" style="background-color: #fd7e20; border-color: #fd7e20; color: #070a16; border-radius: 20px; margin-left: 10px"
-              id="play" onClick="switchToVideo();">Video</button>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <video controls width="100%" id="intro_video" style="display: none;">
-            <source src="intro.mp4" type="video/mp4">
-          </video>
-          <img src="img/intro.jpg" alt="Introduction Image" id="intro_img" style="width: 100%; display: block;">
-        </div>
-      </div>
-    </div>
-  </section>
+        <div class="divider"></div>
 
-  <section id="technology">
-    <div class="container-fluid">
-      <div class="row">
-        <!-- Technology Columns -->
-        <div class="col-lg-4 col-md-6" style="padding: 0%">
-          <div class="text-center" style="padding: 1%; font-size: 1.4em; color: #bfbfbf; background-color: #28354f">PBV (Purpose Based Vehicle)</div>
-          <div class="text-center" style="padding: 3%; background-color: #ffffff"><img src="img/pbv.jpg" alt="Purpose Based Vehicle" style="max-width: 100%; height: auto;"></div>
-        </div>
-        <div class="col-lg-4 col-md-6" style="padding: 0%">
-          <div class="text-center" style="padding: 1%; font-size: 1.4em; color: #bfbfbf; background-color: #28354f">Commercial Vehicle</div>
-          <div class="text-center" style="padding: 3%; background-color: #ffffff"><img src="img/cv.jpg" alt="Commercial Vehicle" style="max-width: 100%; height: auto;"></div>
-        </div>
-        <div class="col-lg-4 col-md-6" style="padding: 0%">
-          <div class="text-center" style="padding: 1%; font-size: 1.4em; color: #bfbfbf; background-color: #28354f">Special Equipment Vehicle</div>
-          <div class="text-center" style="padding: 3%; background-color: #ffffff"><img src="img/sev.jpg" alt="Special Equipment Vehicle" style="max-width: 100%; height: auto;"></div>
-        </div>
-      </div>
-  
-      <!-- AIoT Solutions -->
-      <div class="row" style="padding: 4%; background-color: #f0f5fe">
-        <div class="col" style="padding-left: 20%; padding-right: 20%">
-          <p style="font-size: 2.5em; font-weight: 900">Revolutionize Your Mobility Business with AIoT Powered Solutions</p>
-          <p style="font-size: 1.1em">Support fleet management, telematics and transportation through AI and IoT-powered solutions. With a focus on intelligent fleet management, telematics service, enhanced public transportation, and optimized traffic management, we're redefining the way mobility business. Using cutting-edge technology, our aim is to improve mobility, reduce cost, increased productivity and enhance the overall experience for mobility service. Embrace a new era of efficient movement in your business with us!</p>
-        </div>
-      </div>
-  
-      <!-- AI and IoT Technology -->
-      <div class="row align-items-center" style="padding: 4%; background-color: #28354f">
-        <div class="col-md-6">
-          <img src="img/cycle.jpg" alt="Technology Cycle" style="max-width: 100%; height: auto;">
-        </div>
-        <div class="col-md-6 custom-margin">
-          <p style="color: #fd7e20; font-size: 2.5em; font-weight: 800">AI and IoT technology</p>
-          <ul style="color: #ffffff; font-size: 1.1em; list-style-type: none">
-            <li>AI (Artificial Intelligence) and IoT (Internet of Things) convergence</li>
-            <li>IoT data, AI algorithm and model = AIoT</li>
-            <li>Data collection/preprocessing, algorithm, analysis and inference</li>
-            <li>Server based AIoT and Edge based AIoT</li>
-          </ul>
-        </div>
-      </div>
-  
-      <!-- AI and IoT Convergence -->
-      <div class="row align-items-center" style="padding: 4%; background-color: #f0f5fe">
-        <div class="col-md-6">
-          <p style="font-size: 2.5em; font-weight: 800">AI and IoT convergence</p>
-          <p style="font-size: 1.1em">AIoT is basically a technology that combines AI and IoT, but cloud computing and edge computing technologies are also used for AI processing. From a connectivity and intelligence perspective, AIoT is a concept in which various digital technologies are used together.</p>
-        </div>
-        <div class="col-md-6 text-center">
-          <img src="img/convergence.jpg" alt="AI and IoT Convergence" style="width: 70%; max-width: 100%; height: auto;">
-        </div>
-      </div>
-    </div>
-  </section>
-  
-
-  <section id="business">
-    <div class="row" style="padding: 4% 10% 4% 10%; background-color: #28354f">
-      <p style="color: #fd7e20; font-size: 2.5em; font-weight: 800">
-        AIoT Service software
-      </p>
-      <p>
-        <div class="col">
-          <ul style="color: #ffffff; font-size: 1.3em; padding: 1% 1% 1% 40%; list-style-type: none">
-            <li>Cargo optimization</li>
-            <li>Inventory management</li>
-            <li>Inspection management</li>
-            <li>Mileage tracking and GPS</li>
-            <li>Security and safety features</li>
-            <li>Accident detection</li>
-          </ul>
-        </div>
-        <div class="col">
-          <ul style="color: #ffffff; font-size: 1.3em; padding: 1% 1% 1% 10%; list-style-type: none">
-            <li>Scheduling, dispatch, and routing</li>
-            <li>&emsp;&emsp;Driver management</li>
-            <li>&emsp;&emsp;Vehicle information</li>
-            <li>&emsp;&emsp;Fuel management</li>
-            <li>Road hazard alert</li>
-          </ul>
-        </div>
-      </p>
-      <div class="row" style="margin-left: 10%">
-        <img src="img/service.jpg" style="max-width: 80%">
-      </div>
-      <p></p>
-      <ul style="color: #ffffff; font-size: 1.1em; padding: 1% 1% 1% 5%; list-style-type: none">
-        <li>Service software based on Cloud platform(AWS, AZURE and GCP)</li>
-        <li>IoT gateway(MQTT,REST, Web socket, TCP), DBMS and computing</li>
-        <li>Interworking with AI engine and Web/app(Android/iOS)</li>
-      </ul>
-       <div class="row" style="margin-left: 10%">
-        <img src="img/service2.jpg" style="max-width: 80%">
-      </div>
-    </div>
-    <div class="row" style="padding: 4% 10% 4% 10%; background-color: #28354f">
-      <p style="color: #fd7e20; font-size: 2.5em; font-weight: 800">
-        AIoT Device software
-      </p>
-      <div class="row" style="margin-left: 1%">
-        <div class="row">
-          <div class="col">
-            <img src="img/db1.jpg" width="100%">
-          </div>
-          <div class="col">
-            <img src="img/db2.jpg" width="100%" height="100%">
-          </div>
-        </div>
-        <p>
-          <ul style="color: #ffffff; font-size: 1.1em; padding: 1% 1% 1% 10%; list-style-type: none">
-            <li>AI Edge computing and IoT software</li>
-            <li>Sensor data, Camera image/Video, audio signal and NLP(Natural Language Processing)</li>
-            <li>Android, Linux and Real-time OS. MQTT, REST, Web socket and TCP</li>
-            <li>LTE, 5G, V2X and WiFi/BT</li>
-          </ul>
+        <p class="highlight">
+            AI와 IoT가 융합된 솔루션 전문기업 <strong>(주)키미소프트</strong>입니다.
         </p>
-        <div class="row" style="margin-left: 10%">
-            <img src="img/db3.jpg" style="max-width: 80%">
+
+        <p>
+            현재 홈페이지는 혁신적인 아이템에 대한<br>
+            <span class="strong">대대적인 리뉴얼이 진행 중</span>입니다.
+        </p>
+
+        <p>
+            더 새롭고 차별화된 서비스로 찾아뵙겠습니다.
+        </p>
+
+        <div class="company">
+            (주)키미소프트
         </div>
-      </div>
     </div>
-  </section>
-
-  <section id="industries">
-    <div class="row" style="padding: 4% 10% 4% 10%; background-color: #f0f5fe">
-      <div class="row">
-        <div class="row">
-          <p style="color: #2c70ba; font-size: 2.5em; font-weight: 800">
-            PBV(Purpose Built Vehicle)
-          </p>
-          <p>
-            <ul style="font-size: 1.3em; padding: 0% 0% 0% 5%; list-style-type: none"">
-              <li>Mobility service for PBV(transportation, logistics, delivery and food etc.)</li>
-            </ul>
-          </p>
-        </div>
-        <div class="row align-items-center text-center">
-          <div class="col">
-            <img src="img/pbv1.png" width="auto" style="max-width: 80%">
-          </div>
-          <div class="col">
-            <img src="img/pbv2.png" width="auto" style="max-width: 80%">
-          </div>
-          <div class="col">
-            <img src="img/pbv3.png" width="auto" style="max-width: 80%">
-          </div>
-        </div>
-        <div class="row" style="padding-bottom: 50px">
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="row">
-          <p style="color: #2c70ba; font-size: 2.5em; font-weight: 800">
-            Commercial Vehicle
-          </p>
-          <p>
-            <ul style="font-size: 1.3em; padding: 0% 0% 0% 5%; list-style-type: none"">
-              <li>Mobility service for Commercial vehicle(Bus, truck and Taxi etc.)</li>
-            </ul>
-          </p>
-        </div>
-        <div class="row align-items-center text-center">
-          <div class="col">
-            <img src="img/cv1.png" width="75%">
-          </div>
-          <div class="col">
-            <img src="img/cv2.png" width="75%">
-          </div>
-          <div class="col">
-            <img src="img/cv3.png" width="75%">
-          </div>
-        </div>
-        <div class="row" style="padding-bottom: 50px">
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="row">
-          <p style="color: #2c70ba; font-size: 2.5em; font-weight: 800">
-            Special equipment Vehicle
-          </p>
-          <p>
-            <ul style="font-size: 1.3em; padding: 0% 0% 0% 5%; list-style-type: none"">
-              <li>Mobility service for Special equipment vehicle(bulldozer, tractor, wheel loader etc.)</li>
-            </ul>
-          </p>
-        </div>
-        <div class="row align-items-center text-center">
-          <div class="col-8">
-            <img src="img/sev1.png" width="80%">
-          </div>
-          <div class="col">
-            <img src="img/sev2.png" width="70%">
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="company">
-    <div class="container-fluid">
-      <div class="row" style="padding: 4% 10%; background-color: #28354f">
-        <!-- Company image and description -->
-        <div class="col-md-6 text-center">
-          <img src="img/company.jpg" alt="Kimisoft Co., Ltd." style="max-width: 90%; height: auto; margin-bottom: 20px;">
-        </div>
-        <div class="col-md-6" style="color: #ffffff; font-size: 1.3em">
-          <p>
-            Kimisoft Co., Ltd. is a company that specializes in developing and supplying software solutions that combine AI and IoT technologies.
-          </p>
-          <p>
-            We provide intelligent services applied to the automotive and mobility fields by utilizing AI algorithms, models, and frameworks, and develop/supply application software applied to the services, platforms, networks, and devices that make up IoT.
-          </p>
-          <p>
-            We are comprised of professional engineers with decades of experience developing various projects, products, and services in the AI and IoT fields, and we strive to provide innovative solutions required by the future mobility world.
-          </p>
-        </div>
-      </div>
-  
-      <!-- Call-to-action -->
-      <div class="row text-center" style="padding: 4% 10%; background-color: #fd7e20">
-        <div class="col-12">
-          <p style="color: #000000; font-size: 2.5em">
-            Optimize Your Mobility Solutions
-          </p>
-          <p style="color: #ffffff; font-size: 1.3em">
-            Unlock Efficiency with AI and IoT Technology<br>
-            Harness the power of artificial intelligence and the Internet of Things to streamline your mobility needs.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-  
-  <section id="contact">
-    <nav class="navbar navbar-expand-lg">
-      <div class="container-fluid" style="background-color: #000000">
-        <div class="row d-inline-block align-items-center text-center" style="padding: 3%; margin-left: 10px">
-          <div class="row">
-            <div class="col">
-              <img src="img/logo.jpg">
-            </div>
-            <p></p>
-          </div>
-          <div class="row" style="color: #ffffff; font-size: 0.8em">
-            <div class="col">
-              AIoT mobility solutions provider
-              <p></p>
-            </div>
-          </div>
-          <div class="row" style="color: #ffffff; font-size: 0.8em">
-            <div class="col">
-              © 2024 kimisoft.co., ltd.
-              <p></p>
-            </div>
-          </div>
-          <div class="row" style="color: #ffffff; font-size: 0.8em">
-            <div class="col">
-              서울특별시 금천구 디지털로9길 46, 이앤씨드림타워7차 4층 406-1호
-            </div>
-          </div>
-        </div>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#footerNav" aria-controls="footerNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon">
-            <i class="fas fa-bars"></i>
-          </span>
-        </button>
-        <div class="collapse navbar-collapse" id="footerNav">
-          <ul class="navbar-nav mx-auto mr-auto">
-            <li class="nav-item mx-3">
-              <a class="nav-link" href="#technology" style="color: #ffffff">Technology</a>
-            </li>
-            <li class="nav-item mx-3">
-              <a class="nav-link" href="#business" style="color: #ffffff">Business</a>
-            </li>
-            <li class="nav-item mx-3">
-              <a class="nav-link" href="#industries" style="color: #ffffff">industries</a>
-            </li>
-            <li class="nav-item mx-3">
-              <a class="nav-link" href="#company" style="color: #ffffff">Company</a>
-            </li>
-            <li class="nav-item mx-3">
-              <a class="nav-link" href="#contact" style="color: #ffffff">Contact</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav> 
-  </section>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-    let toogle = false;
-
-    function switchToVideo() {
-        toogle = !toogle;
-
-        if (toogle) {
-          document.getElementById("play").innerHTML = "Image";
-          // Hide the image
-          document.getElementById("intro_img").style.display = "none";
-          // Show the video
-          document.getElementById("intro_video").style.display = "block";
-        } else {
-          document.getElementById("play").innerHTML = "Video";
-          // Hide the image
-          document.getElementById("intro_img").style.display = "block";
-          // Show the video
-          document.getElementById("intro_video").style.display = "none";
-        }
-    }
-  
-  /*
-  // 팝업 열기
-  window.onload = function() {
-    document.getElementById('popup').style.display = 'block';
-  };
-
-  // 팝업 닫기
-  function closePopup() {
-    document.getElementById('popup').style.display = 'none';
-  }
-  */
-  </script>
-
 </body>
+
 </html>
